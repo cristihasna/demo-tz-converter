@@ -25,6 +25,8 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.converter.getTimeZones().subscribe((response) => {
       this.timeZones = response;
+      this.fromTz = response[0].zoneName;
+      this.toTz = response[1].zoneName;
     });
   }
 

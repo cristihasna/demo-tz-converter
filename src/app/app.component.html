@@ -2,21 +2,29 @@
   <app-logo></app-logo>
   <div class="content">
     <div class="left-side">
-      <p>From</p>
-      <select id="from-time-zone" [(ngModel)]="fromTz">
+      <mat-label>From</mat-label>
+      <mat-select
+        id="from-time-zone"
+        [(ngModel)]="fromTz"
+        [placeholder]="'Time zone'"
+      >
         @for (tz of timeZones; track tz.zoneName) {
-        <option [value]="tz.zoneName">{{ tz.zoneName }}</option>
+        <mat-option [value]="tz.zoneName">{{ tz.zoneName }}</mat-option>
         }
-      </select>
+      </mat-select>
     </div>
     <div class="divider" role="separator" aria-label="Divider"></div>
     <div class="right-side">
-      <p>To</p>
-      <select id="to-time-zone" [(ngModel)]="toTz">
+      <mat-label>To</mat-label>
+      <mat-select
+        id="from-time-zone"
+        [(ngModel)]="toTz"
+        [placeholder]="'Time zone'"
+      >
         @for (tz of timeZones; track tz.zoneName) {
-        <option [value]="tz.zoneName">{{ tz.zoneName }}</option>
+        <mat-option [value]="tz.zoneName">{{ tz.zoneName }}</mat-option>
         }
-      </select>
+      </mat-select>
     </div>
   </div>
   <div class="content">
@@ -26,14 +34,16 @@
       <input type="time" [(ngModel)]="fromTime" />
     </div>
 
-    <button id="convert" (click)="convert()">Convert</button>
+    <button mat-fab color="accent" (click)="convert()">
+      <mat-icon>check</mat-icon>
+    </button>
 
     <div class="right-side">
       <p>Converted date</p>
       @if (isConverting) {
       <span>loading...</span>
       } @else {
-      {{ convertedDate }}
+      {{ convertedDate || "no date selected" }}
       }
     </div>
   </div>
